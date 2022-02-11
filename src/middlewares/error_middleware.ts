@@ -9,7 +9,7 @@ export default (
   if (err instanceof Error) {
     return response.status(400).json({
       status: "error",
-      message: err.message,
+      message: err.message || "Error dispatch for app!",
     });
   }
   return response.status(500).json({
