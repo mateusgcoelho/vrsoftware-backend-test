@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  backend-vrsoftware-test:
+    image: postgres:10.5
+    restart: always
+    environment:
+      - POSTGRES_USER=vrsoftware-test
+      - POSTGRES_PASSWORD=Docker
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    ports:
+      - "5432:5432"
