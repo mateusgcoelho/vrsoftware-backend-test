@@ -1,5 +1,5 @@
 interface ICreateStudentInterface {
-  name: String;
+  name: string;
 }
 
 export { ICreateStudentInterface };
