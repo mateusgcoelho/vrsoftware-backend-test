@@ -1,5 +1,7 @@
 import { prisma } from "../../../database/client";
 
+import AppError from "../../../services/app_error";
+
 class ListOneCourseService {
   async execute(code: number) {
     try {
@@ -11,7 +13,7 @@ class ListOneCourseService {
         })
         .then((course) => course);
     } catch (error) {
-      throw new Error("Internal error list one course!");
+      throw new AppError("Internal error list one course!");
     }
   }
 }

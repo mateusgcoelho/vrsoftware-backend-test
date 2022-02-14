@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 
+import AppError from "../../../services/app_error";
+
 import { ListOneStudentService } from "./list_one_student_service";
 
 class ListOneStudentController {
@@ -15,9 +17,11 @@ class ListOneStudentController {
 
       const student = await this.listOneStudentService.execute(studentId);
 
+      if (!student) throw new AppError("Student not's found!");
+
       return response.json(student);
     } catch (error) {
-      throw new Error("Internal error on list one student!");
+      throw new AppError("Internal error on list one student!");
     }
   }
 }

@@ -6,16 +6,16 @@ import { listOneCourseFactory } from "../modules/courses/list_one/list_one_facto
 
 const coursesRoutes = Router();
 
-coursesRoutes.get("/", (request: Request, response: Response) => {
-  listAllCoursesFactory().handle(request, response);
+coursesRoutes.get("/", async (request: Request, response: Response) => {
+  await listAllCoursesFactory().handle(request, response);
 });
 
-coursesRoutes.get("/:code", (request: Request, response: Response) => {
-  listOneCourseFactory().handle(request, response);
+coursesRoutes.get("/:code", async (request: Request, response: Response) => {
+  await listOneCourseFactory().handle(request, response);
 });
 
-coursesRoutes.post("/", (request: Request, response: Response) => {
-  createCourseFactory().handle(request, response);
+coursesRoutes.post("/", async (request: Request, response: Response) => {
+  await createCourseFactory().handle(request, response);
 });
 
 export { coursesRoutes };

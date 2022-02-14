@@ -4,12 +4,12 @@ import { listOneStudentFactory } from "../modules/students/list_one/list_one_stu
 
 const studentsRoutes = Router();
 
-studentsRoutes.post("/", (request: Request, response: Response) => {
-  createStudentFactory().handle(request, response);
+studentsRoutes.post("/", async (request: Request, response: Response) => {
+  await createStudentFactory().handle(request, response);
 });
 
-studentsRoutes.get("/:id", (request: Request, response: Response) => {
-  listOneStudentFactory().handle(request, response);
+studentsRoutes.get("/:id", async (request: Request, response: Response) => {
+  await listOneStudentFactory().handle(request, response);
 });
 
 export { studentsRoutes };
