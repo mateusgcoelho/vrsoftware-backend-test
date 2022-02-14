@@ -10,19 +10,11 @@ class ListOneStudentController {
   async handle(request: Request, response: Response) {
     const { id } = request.params;
 
-    if (!id) throw new Error("Invalid ID param!");
+    const studentId = Number(id);
 
-    try {
-      const studentId = Number(id);
+    const student = await this.listOneStudentService.execute(studentId);
 
-      const student = await this.listOneStudentService.execute(studentId);
-
-      if (!student) throw new AppError("Student not's found!");
-
-      return response.json(student);
-    } catch (error) {
-      throw new AppError("Internal error on list one student!");
-    }
+    return response.json(student);
   }
 }
 

@@ -6,15 +6,15 @@ import AppError from "../../../services/app_error";
 
 class CreateCourseService {
   async execute(data: ICreateCourseInterface) {
-    try {
-      return await prisma.course
-        .create({
-          data,
-        })
-        .then((course) => course);
-    } catch (error) {
-      throw new AppError("Internal error on create course!");
-    }
+    return await prisma.course
+      .create({
+        data,
+      })
+      .then((course) => course)
+      .catch((error) => {
+        return new AppError(error);
+      })
+      .finally(() => prisma.$disconnect());
   }
 }
 

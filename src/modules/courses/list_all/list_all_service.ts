@@ -4,11 +4,13 @@ import AppError from "../../../services/app_error";
 
 class ListAllCoursesService {
   async execute() {
-    try {
-      return await prisma.course.findMany().then((courses) => courses);
-    } catch (error) {
-      throw new AppError("Internal error list all courses!");
-    }
+    return await prisma.course
+      .findMany()
+      .then((courses) => courses)
+      .catch((error) => {
+        return new AppError(error);
+      })
+      .finally(() => prisma.$disconnect());
   }
 }
 

@@ -3,17 +3,25 @@ import AppError from "../../../services/app_error";
 
 class ListOneStudentService {
   async execute(id: number) {
-    try {
-      return await prisma.student
-        .findUnique({
-          where: {
-            id,
-          },
-        })
-        .then((student) => student);
-    } catch (error) {
-      throw new AppError("Internal error on list one student!");
+    if (isNaN(id)) {
+      return new AppError("Invalid ID format!");
     }
+
+    return await prisma.student
+      .findUnique({
+        where: {
+          id,
+        },
+      })
+      .then((student) => {
+        if (!student) return new AppError("Student not's found!");
+
+        return student;
+      })
+      .catch((error) => {
+        return new AppError(error);
+      })
+      .finally(() => prisma.$disconnect());
   }
 }
 
