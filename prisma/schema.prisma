@@ -18,8 +18,8 @@ model course {
 }
 
 model student {
-  id          Int    @id @default(autoincrement())
-  code        course @relation(fields: [course_code], references: [code])
-  course_code Int
-  name        String @db.VarChar(50)
+  id          Int     @id @default(autoincrement())
+  name        String  @db.VarChar(50)
+  course      course? @relation(fields: [course_code], references: [code])
+  course_code Int?
 }
