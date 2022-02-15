@@ -18,7 +18,7 @@ const initDefaultDatabase = async () => {
       if (students.length <= 0)
         await prisma.student.create({
           data: {
-            course: {
+            courses: {
               connect: {
                 code: 1,
               },
