@@ -13,7 +13,7 @@ class ListOneStudentService {
           id,
         },
         include: {
-          course: true,
+          courses: true,
         },
       })
       .then((student) => {
