@@ -12,6 +12,7 @@ class CreateCourseService {
       })
       .then((course) => course)
       .catch((error) => {
+        console.log(error);
         return new AppError(error);
       })
       .finally(() => prisma.$disconnect());

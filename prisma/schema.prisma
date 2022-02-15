@@ -20,10 +20,9 @@ model course {
 }
 
 model student {
-  id          Int      @id @default(autoincrement())
-  name        String   @db.VarChar(50)
-  course      course?  @relation(fields: [course_code], references: [code])
-  course_code Int?
-  created_at  DateTime @default(now())
-  updated_at  DateTime @default(now()) @updatedAt
+  id         Int      @id @default(autoincrement())
+  name       String   @db.VarChar(50)
+  courses    course[]
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
 }
