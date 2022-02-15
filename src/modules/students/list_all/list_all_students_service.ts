@@ -5,7 +5,11 @@ import AppError from "../../../services/app_error";
 class ListAllStudentsService {
   async execute() {
     return await prisma.student
-      .findMany()
+      .findMany({
+        include: {
+          course: true,
+        },
+      })
       .then((students) => students)
       .catch((error) => {
         return new AppError(error);

@@ -9,6 +9,9 @@ class ListOneCourseService {
         where: {
           code: code,
         },
+        include: {
+          students: true,
+        },
       })
       .then((course) => {
         if (!course) return new AppError("Course not's found!");

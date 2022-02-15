@@ -12,6 +12,9 @@ class ListOneStudentService {
         where: {
           id,
         },
+        include: {
+          course: true,
+        },
       })
       .then((student) => {
         if (!student) return new AppError("Student not's found!");
