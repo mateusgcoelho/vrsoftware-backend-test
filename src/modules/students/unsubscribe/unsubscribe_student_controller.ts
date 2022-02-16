@@ -13,7 +13,9 @@ class UnsubscribeStudentController {
 
     await this.unsubscribeStudentService.execute(studentId, courseCode);
 
-    return response.status(204).json();
+    return response.status(204).json({
+      message: "Student has unsubscribed!",
+    });
   }
 }
 

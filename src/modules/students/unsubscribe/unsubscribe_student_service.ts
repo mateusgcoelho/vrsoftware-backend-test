@@ -3,6 +3,10 @@ import AppError from "../../../services/app_error";
 
 class UnsubscribeStudentService {
   async execute(id: number, courseCode: number) {
+    if (isNaN(id) || isNaN(courseCode)) {
+      return new AppError("Invalid ID format!");
+    }
+
     return await prisma.student
       .update({
         where: {
