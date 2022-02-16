@@ -12,6 +12,8 @@ class EnrollStudentsController {
     const studentId = Number(id);
 
     const student = await this.enrollStudentsService.execute(studentId, data);
+
+    return response.json(student);
   }
 }
 
