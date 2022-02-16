@@ -7,7 +7,14 @@ class ListAllCoursesService {
     return await prisma.course
       .findMany({
         include: {
-          students: true,
+          students: {
+            select: {
+              id: true,
+              name: true,
+              created_at: true,
+              courses: true,
+            },
+          },
         },
       })
       .then((courses) => courses)

@@ -1,15 +1,18 @@
 import { prisma } from "../../../database/client";
-import { ICreateStudentInterface } from "../../../interface/create_student_interface";
 import AppError from "../../../services/app_error";
 
-class CreateStudentService {
-  async execute(data: any) {
+class UnsubscribeStudentService {
+  async execute(id: number, courseCode: number) {
     return await prisma.student
-      .create({
+      .update({
+        where: {
+          id,
+        },
         data: {
-          name: data.name,
           courses: {
-            connect: data.courses,
+            disconnect: {
+              code: courseCode,
+            },
           },
         },
       })
@@ -21,4 +24,4 @@ class CreateStudentService {
   }
 }
 
-export { CreateStudentService };
+export { UnsubscribeStudentService };
