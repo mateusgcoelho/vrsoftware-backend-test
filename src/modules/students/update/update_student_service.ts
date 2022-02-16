@@ -1,9 +1,13 @@
 import { prisma } from "../../../database/client";
-import { ICreateStudentInterface } from "../../../interface/create_student_interface";
+
 import AppError from "../../../services/app_error";
 
-class CreateStudentService {
-  async execute(data: any) {
+class UpdateStudentService {
+  async execute(id: number, data: any) {
+    if (isNaN(id)) {
+      return new AppError("Invalid ID format!");
+    }
+
     let dataToSendPrisma: any =
       data.courses == null
         ? {
@@ -21,7 +25,12 @@ class CreateStudentService {
           };
 
     return await prisma.student
-      .create(dataToSendPrisma)
+      .update({
+        where: {
+          id,
+        },
+        ...dataToSendPrisma,
+      })
       .then((student) => student)
       .catch((error) => {
         return new AppError(error);
@@ -30,4 +39,4 @@ class CreateStudentService {
   }
 }
 
-export { CreateStudentService };
+export { UpdateStudentService };
