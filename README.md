@@ -22,7 +22,7 @@ docker-compose up
 ou
 
 ```
-docker run --name contact-list -e "POSTGRES_USER=contact-list" -e "POSTGRES_PASSWORD=Docker" -p 5432:5432 -d postgres
+docker run --name contact-list -e "POSTGRES_USER=vrsoftware-test" -e "POSTGRES_PASSWORD=Docker" -p 5432:5432 -d postgres
 ```
 
 ## Variaveis ambiente
